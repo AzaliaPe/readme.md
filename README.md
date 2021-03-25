@@ -1,6 +1,6 @@
 # *Examen Parcial 2*
-+Este repositorio tiene la finalidad de demostrar nuestros conocimientos acerca de Shader graph que se cursó en el segundo parcial de la materia tópicos de física y se usa estrictamente Shader Graph en Unity.
-+Este proyecto se creó a partir de Shader Graph desde un Universal Render Pipeline, el proyecto consiste en recrear el sistema solar, donde se realizaron los planetas, sol y luna con distintos componentes que nos hicieron trabajar los conocimientos de esta materia. Se tomaron en cuenta las medidas, texturas y componentes oficiales de la nasa.
++ Este repositorio tiene la finalidad de demostrar nuestros conocimientos acerca de Shader graph que se cursó en el segundo parcial de la materia tópicos de física y se usa estrictamente Shader Graph en Unity.
++ Este proyecto se creó a partir de Shader Graph desde un Universal Render Pipeline, el proyecto consiste en recrear el sistema solar, donde se realizaron los planetas, sol y luna con distintos componentes que nos hicieron trabajar los conocimientos de esta materia. Se tomaron en cuenta las medidas, texturas y componentes oficiales de la nasa.
 Los planetas tienen como componente su efecto particular de textura, normal map junto con el rim light, cabe destacar que existen componentes extras que se realizaron con otros tipos de técnicas que se brindan en Universal Render Pipeline. 
 
 ## Desarrollo 
