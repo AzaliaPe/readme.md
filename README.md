@@ -25,7 +25,7 @@ Rotate
 
 + Por último, en la creación del sol, se utilizó de igual manera que en los planetas la herramienta de Shader Graph, con la implementación de los componentes extras de la herramienta de visual effects, la cual se descargó por medio del package mánager de unity, la cual nos brindó efectos de partículas, las cuales se añadieron sobre nuestro shader logrando así un efecto más realista y trabajado.
 
-+ Video demostración: 
++ **Video demostración**: 
 Link de la nasa: https://solarsystem.nasa.gov/planets/overview/
 
 ## Preview
