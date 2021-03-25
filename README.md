@@ -7,7 +7,7 @@ Los planetas tienen como componente su efecto particular de textura, normal map 
 + Para la creación de los planetas se creó desde Lit Shader Graph, donde cada planeta llevo distintos pasos y distintos componentes, unos más que otros ya que cada uno cuenta con distintos grados de dificultad. En la creación de los planetas sencillos, los cuales en su mayoría son los que su totalidad es de gas. Estos planetas no necesitaron componentes extras de distintas fuentes, así que se utilizaron los shader básicos para su creación: 
   + ***Main Texture***: 
   + ***Normal Map***:   
-  + ***Rim Light**:   
+  + ***Rim Light***:   
   + ***Y movimiento en texturas para simular el movimiento constante de planetas***:  
 
 + El Main Texture, es particularmente para cada planeta, esta representa la textura difusa principal de cada planeta, es lo que nos ayuda a darle al modelo, su textura como capa de imagen para que se adapte al modelo.
