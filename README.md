@@ -20,7 +20,6 @@ Los normal Maps son un tipo de textura especial que nos permitió agregar detall
 + **Scripts**
   + **Script ChangeTarget**: en el script ChangeLookAtTarget se declara una variable de tipo GameObject la cual tiene como nombre target, se pregunta si ese target esta vació, si es así se le asigna nuestro GameObject seleccionado, se tiene una función en la cual se pasa una variable del script LookAtTarget y se le cambia el valor del GameObject al que se tiene actualmente y ajustamos la cámara a ese objeto.
   + **LookTarget**: en el script LookAtTarget se declara una variable pública de tipo GameObject, se pregunta si nuestra variable esta vacia, de ser así se le asigna el GameObject en el que nos encontramos. Después se tiene una función la cual hace que la cámara siga a nuestro objeto.
-Rotate
   + **RotateAround**: se tienen dos variables públicas, una para el planeta y otra para la velocidad, primero se pregunta si nuestro planeta esta vació, si es así le asigamos el planeta en el que nos encontramos. Luego en la función Update le indicamos al planeta la posición que va a seguir junto con la velocidad dada anteriormente.
 
 + Por último, en la creación del sol, se utilizó de igual manera que en los planetas la herramienta de Shader Graph, con la implementación de los componentes extras de la herramienta de visual effects, la cual se descargó por medio del package mánager de unity, la cual nos brindó efectos de partículas, las cuales se añadieron sobre nuestro shader logrando así un efecto más realista y trabajado.
