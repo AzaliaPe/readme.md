@@ -1,14 +1,14 @@
 # *Examen Parcial 2*
--Este repositorio tiene la finalidad de demostrar nuestros conocimientos acerca de Shader graph que se cursó en el segundo parcial de la materia tópicos de física y se usa estrictamente Shader Graph en Unity.
--Este proyecto se creó a partir de Shader Graph desde un Universal Render Pipeline, el proyecto consiste en recrear el sistema solar, donde se realizaron los planetas, sol y luna con distintos componentes que nos hicieron trabajar los conocimientos de esta materia. Se tomaron en cuenta las medidas, texturas y componentes oficiales de la nasa.
++Este repositorio tiene la finalidad de demostrar nuestros conocimientos acerca de Shader graph que se cursó en el segundo parcial de la materia tópicos de física y se usa estrictamente Shader Graph en Unity.
++Este proyecto se creó a partir de Shader Graph desde un Universal Render Pipeline, el proyecto consiste en recrear el sistema solar, donde se realizaron los planetas, sol y luna con distintos componentes que nos hicieron trabajar los conocimientos de esta materia. Se tomaron en cuenta las medidas, texturas y componentes oficiales de la nasa.
 Los planetas tienen como componente su efecto particular de textura, normal map junto con el rim light, cabe destacar que existen componentes extras que se realizaron con otros tipos de técnicas que se brindan en Universal Render Pipeline. 
 
 ## Desarrollo 
 -Para la creación de los planetas se creó desde Lit Shader Graph, donde cada planeta llevo distintos pasos y distintos componentes, unos más que otros ya que cada uno cuenta con distintos grados de dificultad. En la creación de los planetas sencillos, los cuales en su mayoría son los que su totalidad es de gas. Estos planetas no necesitaron componentes extras de distintas fuentes, así que se utilizaron los shader básicos para su creación: 
-  -***Main Texture***: 
-  -***Normal Map***:   
-  -***Rim Light**:   
-  -***Y movimiento en texturas para simular el movimiento constante de planetas***:  
+  +***Main Texture***: 
+  +***Normal Map***:   
+  +***Rim Light**:   
+  +***Y movimiento en texturas para simular el movimiento constante de planetas***:  
 
 -El Main Texture, es particularmente para cada planeta, esta representa la textura difusa principal de cada planeta, es lo que nos ayuda a darle al modelo, su textura como capa de imagen para que se adapte al modelo.
 Los normal Maps son un tipo de textura especial que nos permitió agregar detalles en las superficies como golpes/bultos/bumps, surcos, rayones a un modelo que atrapa la luz como si fuera representado por una geometría real. La Normal Map se agrega como Texture 2d para que haga complemento junto con la Textura y que nos dé una representación del modelo más realista.
