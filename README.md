@@ -62,63 +62,53 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 
   + Crearemos otro subgrafo para la atenuación de la luz, donde utilizaremos el MainLight y realizaremos sus respectivas operaciones para calcular el color y las sombras:
 ![](.png)
-
- + Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
+  
+  + Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
 ![](.png)
 
-Lo pasamos a nuestro shader principal conectando el producto punto con la intensidad de la luz, también crearemos una propiedad de tipo Boolean para saber si el efecto será intenso o suavizado.
+  + Lo pasamos a nuestro shader principal conectando el producto punto con la intensidad de la luz, también crearemos una propiedad de tipo Boolean para saber si el efecto será intenso o suavizado.
 
-Para el reflejo de la luz cartoon, en vez de utilizar una textura creada por nosotros en cualquier editor de imágenes, utilizamos la herramienta voronoi para simular dicho efecto, entonces creamos otro subgrafo llamado Dabs, en donde modificaremos las propiedades del voronoi utilizando el rotate y el tiling and offset. Dando como resultado lo siguiente:
+  + Para el reflejo de la luz cartoon, en vez de utilizar una textura creada por nosotros en cualquier editor de imágenes, utilizamos la herramienta voronoi para simular dicho efecto, entonces creamos otro subgrafo llamado Dabs, en donde modificaremos las propiedades del voronoi utilizando el rotate y el tiling and offset. Dando como resultado lo siguiente:
+![](.png)
 
-![](RackMultipart20210526-4-1bpns4f_html_ccc3a31bbadc5e9b.png)
+  + Lo pasamos a nuestro shader principal multiplicándolo con el DirectSpecular.
 
-Lo pasamos a nuestro shader principal multiplicándolo con el DirectSpecular.
+  + Crearemos otro subgrafo para el SideLight, el cual es la silueta de luz que se forma en nuestro modelo, dependiendo de la dirección de la luz. Aquí haremos uso nuevamente del MainLight, del Lambert. Substraeremos pocas unidades a nuestro lamber para que el falloff quede en la parte superior y realizaremos un producto punto entre el MainLight y el ViewDirection, para después unir ambos resultados e invertirlo y agregar el filtro deseado utilizando el efecto Fresnel y lo redondeamos utilizando Step. Viéndose así:
+![](.png)
 
-Crearemos otro subgrafo para el SideLight, el cual es la silueta de luz que se forma en nuestro modelo, dependiendo de la dirección de la luz. Aquí haremos uso nuevamente del MainLight, del Lambert. Substraeremos pocas unidades a nuestro lamber para que el falloff quede en la parte superior y realizaremos un producto punto entre el MainLight y el ViewDirection, para después unir ambos resultados e invertirlo y agregar el filtro deseado utilizando el efecto Fresnel y lo redondeamos utilizando Step.
+  + Para agregarlo al shader principal solo lo tenemos que sumar con el efecto que ya teníamos. Finalmente, nuestro shader se vería de este modo:
+![](.png)
+    Agregándolo a un modelo:
+  ![](.png)
 
-Viéndose así:
-
-![](RackMultipart20210526-4-1bpns4f_html_c63f7d3d1d8db81.png)
-
-Para agregarlo al shader principal solo lo tenemos que sumar con el efecto que ya teníamos. Finalmente, nuestro shader se vería de este modo:
-
-![](RackMultipart20210526-4-1bpns4f_html_b5d85de03f3bf136.png)
-
-Agregándolo a un modelo:
-
-![](RackMultipart20210526-4-1bpns4f_html_69d45749c8f81053.png)
-
-_ **Capítulo 4. Creación del Shader grass vertex** _
+***Capítulo 4. Creación del Shader grass vertex***
 
 Para el movimiento de las plantas y las hojas de los árboles, se necesita modificar la velocidad de desplazamiento del vértice. Para ello, se agrega una propiedad de tipo vector2, en la cual se introduce la velocidad con la que se desea que se muevan las plantas y se multiplica por el tiempo. Esto se conecta con un Tiling and Offset junto con la posición. Después, para poder cambiar la variación de la posición del ruido del vértice, agregamos un nodo de Gradient Noise, al cual le conectamos lo que calculamos anteriormente y una propiedad de tipo float con el valor de la densidad del ruido. Todo esto se conecta a un Substract para limpiar el ruido del viento, y después multiplicarlo por la intensidad del viento. Luego, lo aplicamos este ruido al eje de las X y creamos la interpolación lineal en la posición del eje de las Y. Para terminar, sólo hay que convertirlo de posición mundial a objeto relativo y conectarlo al vertex position.
+![](.png)
 
-![](RackMultipart20210526-4-1bpns4f_html_fa0ee0c5a5df1702.png)
-
-_ **Capítulo 5. Creación de escenario con shaders** _
+***Capítulo 5. Creación de escenario con shaders***
 
 Después haber hecho los shaders, se comenzó a crear el escenario, cambiamos el material de skybox por otro material que descargamos desde assets para el cielo para poder tener un cielo de acuerdo con nuestro proyecto. Luego creamos un objeto 3D tierra y le fuimos dando forma a nuestro terreno con ayuda de las herramientas que este plano nos proporciona.
-
-![](RackMultipart20210526-4-1bpns4f_html_25739dcb5c67ee29.png)
+![](.png)
 
 Después de terminar de crear nuestro plano de terreno, se buscaron assets que contaron con los requisitos necesarios para elaborar nuestro proyecto, por lo cual colocamos un asset de vegetación verde para el relieve creando una zona montañosa verde en el plano de tierra. Posteriormente se le agregó un plano al cual se le coloco el material del agua.
-
-![](RackMultipart20210526-4-1bpns4f_html_622834813cf5cc18.png)
+![](.png)
 
 A partir de esto, se empezó a decorar con vegetación de assets de árboles y plantas los cuales los importamos a Unity y eliminamos los árboles que no necesitamos, así que nos dimos a la tarea de buscar cada assets que nos gustara, donde concluimos a 3 diferentes. A los cuales se le agrego el shader grass vertex.
 
-![](RackMultipart20210526-4-1bpns4f_html_fa1ff0541d1fc2dd.png)
+![](.png)
 
 Y finalmente para utilizar otro de nuestros shaders colocamos plantas con su animación vertex, rocas y animales cuyos utilizan el modelo de luz custom toon-shading. Este shader ya antes definido se utilizó para darle un poco más de vida animal a nuestro escenario.
 
-![](RackMultipart20210526-4-1bpns4f_html_88de0ed12d17acbf.png)
+![](.png)
 
-![](RackMultipart20210526-4-1bpns4f_html_3cc148b9b6bf572c.png)
+![](.png)
 
-**Conclusiones**
+## Conclusiones
 
 Al final obtuvimos un proyecto que nos retó a poner en práctica nuestros conocimientos en base a la materia, se realizó muy buen proyecto, nos gustó la manera en la que se deslindó cada aparte de él y fue muy divertido colaborar y crear algo que realmente nos gustara. Se obtuvo un paisaje digno de cada punto con el que se estableció el proyecto y por eso podemos decir que el terminarlo y concluir con un escenario creado por nosotros fue muy bueno tanto para nosotros como para reforzar nuestros conocimientos. Hubo algunos detalles en cuestión de encontrar algunos modelos o como empezar a crearlo, pero de ahí en fuera todo se hizo en su tiempo y forma.
 
-**Referencias**
+## Referencias
 
 1. Anónimo. (s.f.). Unity SRP Doc. Gradient Noise Node. Recuperado de: [https://bitinn.github.io/ScriptableRenderPipeline/ShaderGraph/Gradient-Noise-Node/](https://bitinn.github.io/ScriptableRenderPipeline/ShaderGraph/Gradient-Noise-Node/)
 2. Anónimo. (2018). RoyStan. Toon Shader. Recuperado de: [https://roystan.net/articles/toon-shader.html](https://roystan.net/articles/toon-shader.html)
@@ -150,7 +140,5 @@ Al final obtuvimos un proyecto que nos retó a poner en práctica nuestros conoc
 28. Unity Technologies. (2021). Unity. Shader Graph. Recuperado de: [https://unity.com/es/shader-graph](https://unity.com/es/shader-graph)
 29. UNIAT. (2021). Uniat. Evolución de Unity en sus 10 años de historia!. Recuperado de: [https://www.uniat.edu.mx/unity-10-anos/](https://www.uniat.edu.mx/unity-10-anos/)
 30. Unity Technologies. (2021). Unity. Water Shader. Recuperado de: [https://forum.unity.com/threads/water-shader.995380/](https://forum.unity.com/threads/water-shader.995380/)
-
-![](RackMultipart20210526-4-1bpns4f_html_5f450ccb74a25a7e.gif)
 
 Ciudad Obregón, Sonora; 25 de mayo de 2020
