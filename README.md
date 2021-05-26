@@ -37,19 +37,19 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 
 + ***Capítulo 2. Creación de Shader para el agua***
 
-  + Para realizar el shader del agua. Primero generamos un grafo de universal render pipeline tipo lit shader graph, decidimos usar este ya que nuestro proyecto no requiere que usemos Sprites. Creamos este shader con un tipo de superficie transparente para que se desvanezca en función con profundidad, usamos la profundidad de la cámara para crear un nodo de la cámara, se le resto el valor de la posición del espacio a la profundidad para crear un gradiente en el agua. Para tener más control en los bordes realizamos un vector de fuerza, posteriormente usamos los brillos del degradado para mezclar entre los dos valores diferentes, así que creamos dos valores de color para poder separar el color del agua profunda y la de la superficie, los conectamos a un nodo y usamos el degradado creado como una máscara para el nodo. Para darle un aspecto más realista al agua usamos dos mapas de normales que se mueven en diferentes direcciones los cuales fueron conectados a sus nodos correspondientes y conectados para poder controlar su fuerza, para que el agua fuera reflejante se utilizó un Smoothness. Y por último para darle movimiento al agua utilizamos la posición de nuestro objeto para poder ser conectado a vertex.
-![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen1.png)
+  + Para realizar el shader del agua. Primero generamos un grafo de universal render pipeline tipo lit shader graph, decidimos usar este ya que nuestro proyecto no requiere que usemos Sprites. Creamos este shader con un tipo de superficie transparente para que se desvanezca en función con profundidad, usamos la profundidad de la cámara para crear un nodo de la cámara, se le resto el valor de la posición del espacio a la profundidad para crear un gradiente en el agua. Para tener más control en los bordes realizamos un vector de fuerza, posteriormente usamos los brillos del degradado para mezclar entre los dos valores diferentes, así que creamos dos valores de color para poder separar el color del agua profunda y la de la superficie, los conectamos a un nodo y usamos el degradado creado como una máscara para el nodo. Para darle un aspecto más realista al agua usamos dos mapas de normales que se mueven en diferentes direcciones los cuales fueron conectados a sus nodos correspondientes y conectados para poder controlar su fuerza, para que el agua fuera reflejante se utilizó un Smoothness. Y por último para darle movimiento al agua utilizamos la posición de nuestro objeto para poder ser conectado a vertex. 
+  ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen1.png)
 
 + ***Capítulo 3. Creación del Shader modelo de luz custom*** 
 
   + Este modelo de luz esta basado en Lambert y en el modelo Specular, crearemos un grafo de universal render pipeline tipo lit shader graph. Primero que nada, creamos nuestro albedo, el cual será el color principal, una vez hecho esto creamos un archivo de tipo hlsl para obtener la dirección de la luz por medio del siguiente código.
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen2.png)
+   ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen2.png)
 
   + Ahora creamos un subgrafo para nuestro mainLight, donde pondremos nuestra función creada anteriormente y le conectaremos un nodo de posición:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen3.png)
+   ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen3.png)
 
   + Acto seguido creamos otro subgrafo en el cual realizaremos la operación producto punto, para esto es necesario el MainLight que acabamos de hacer y el normal vector, lo saturamos para que nos quede en valores de 0 y 1:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen4.png)
+   ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen4.png)
 
   + Para crear el efecto de falloff haremos un subgrafo donde estará el Lambert, para esto multiplicamos nuestro producto punto con el color de la atenuación de la luz:
 ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen5.png)
