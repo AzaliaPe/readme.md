@@ -38,68 +38,68 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 + ***Capítulo 2. Creación de Shader para el agua***
 
   + Para realizar el shader del agua. Primero generamos un grafo de universal render pipeline tipo lit shader graph, decidimos usar este ya que nuestro proyecto no requiere que usemos Sprites. Creamos este shader con un tipo de superficie transparente para que se desvanezca en función con profundidad, usamos la profundidad de la cámara para crear un nodo de la cámara, se le resto el valor de la posición del espacio a la profundidad para crear un gradiente en el agua. Para tener más control en los bordes realizamos un vector de fuerza, posteriormente usamos los brillos del degradado para mezclar entre los dos valores diferentes, así que creamos dos valores de color para poder separar el color del agua profunda y la de la superficie, los conectamos a un nodo y usamos el degradado creado como una máscara para el nodo. Para darle un aspecto más realista al agua usamos dos mapas de normales que se mueven en diferentes direcciones los cuales fueron conectados a sus nodos correspondientes y conectados para poder controlar su fuerza, para que el agua fuera reflejante se utilizó un Smoothness. Y por último para darle movimiento al agua utilizamos la posición de nuestro objeto para poder ser conectado a vertex.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen1.png)
 
 + ***Capítulo 3. Creación del Shader modelo de luz custom*** 
 
   + Este modelo de luz esta basado en Lambert y en el modelo Specular, crearemos un grafo de universal render pipeline tipo lit shader graph. Primero que nada, creamos nuestro albedo, el cual será el color principal, una vez hecho esto creamos un archivo de tipo hlsl para obtener la dirección de la luz por medio del siguiente código.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen2.png)
 
   + Ahora creamos un subgrafo para nuestro mainLight, donde pondremos nuestra función creada anteriormente y le conectaremos un nodo de posición:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen3.png)
 
   + Acto seguido creamos otro subgrafo en el cual realizaremos la operación producto punto, para esto es necesario el MainLight que acabamos de hacer y el normal vector, lo saturamos para que nos quede en valores de 0 y 1:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen4.png)
 
   + Para crear el efecto de falloff haremos un subgrafo donde estará el Lambert, para esto multiplicamos nuestro producto punto con el color de la atenuación de la luz:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen5.png)
 
   + De igual manera que con el MainLight crearemos un archivo hlsl para el DirectSpecular, este funciona para que se refleje la dirección de la luz dependiendo de la dirección de donde sea observado, para esto utilizaremos el siguiente código:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen6.png)
 
   + Posteriormente creamos un subgrafo para el DirectSpecular donde le pasaremos sus propiedades correspondientes:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen7.png)
 
   + Crearemos otro subgrafo para la atenuación de la luz, donde utilizaremos el MainLight y realizaremos sus respectivas operaciones para calcular el color y las sombras:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen8.png)
   
   + Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen9.png)
 
   + Lo pasamos a nuestro shader principal conectando el producto punto con la intensidad de la luz, también crearemos una propiedad de tipo Boolean para saber si el efecto será intenso o suavizado.
 
   + Para el reflejo de la luz cartoon, en vez de utilizar una textura creada por nosotros en cualquier editor de imágenes, utilizamos la herramienta voronoi para simular dicho efecto, entonces creamos otro subgrafo llamado Dabs, en donde modificaremos las propiedades del voronoi utilizando el rotate y el tiling and offset. Dando como resultado lo siguiente:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen10.png)
 
   + Lo pasamos a nuestro shader principal multiplicándolo con el DirectSpecular.
 
   + Crearemos otro subgrafo para el SideLight, el cual es la silueta de luz que se forma en nuestro modelo, dependiendo de la dirección de la luz. Aquí haremos uso nuevamente del MainLight, del Lambert. Substraeremos pocas unidades a nuestro lamber para que el falloff quede en la parte superior y realizaremos un producto punto entre el MainLight y el ViewDirection, para después unir ambos resultados e invertirlo y agregar el filtro deseado utilizando el efecto Fresnel y lo redondeamos utilizando Step. Viéndose así:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen11.png)
 
   + Para agregarlo al shader principal solo lo tenemos que sumar con el efecto que ya teníamos. Finalmente, nuestro shader se vería de este modo:
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen12.png)
     Agregándolo a un modelo:
-  ![](.png)
+  ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen13.png)
 
 + ***Capítulo 4. Creación del Shader grass vertex***
 
   + Para el movimiento de las plantas y las hojas de los árboles, se necesita modificar la velocidad de desplazamiento del vértice. Para ello, se agrega una propiedad de tipo vector2, en la cual se introduce la velocidad con la que se desea que se muevan las plantas y se multiplica por el tiempo. Esto se conecta con un Tiling and Offset junto con la posición. Después, para poder cambiar la variación de la posición del ruido del vértice, agregamos un nodo de Gradient Noise, al cual le conectamos lo que calculamos anteriormente y una propiedad de tipo float con el valor de la densidad del ruido. Todo esto se conecta a un Substract para limpiar el ruido del viento, y después multiplicarlo por la intensidad del viento. Luego, lo aplicamos este ruido al eje de las X y creamos la interpolación lineal en la posición del eje de las Y. Para terminar, sólo hay que convertirlo de posición mundial a objeto relativo y conectarlo al vertex position.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen14.png)
 
 + ***Capítulo 5. Creación de escenario con shaders***
 
   + Después haber hecho los shaders, se comenzó a crear el escenario, cambiamos el material de skybox por otro material que descargamos desde assets para el cielo para poder tener un cielo de acuerdo con nuestro proyecto. Luego creamos un objeto 3D tierra y le fuimos dando forma a nuestro terreno con ayuda de las herramientas que este plano nos proporciona.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen15.png)
 
   + Después de terminar de crear nuestro plano de terreno, se buscaron assets que contaron con los requisitos necesarios para elaborar nuestro proyecto, por lo cual colocamos un asset de vegetación verde para el relieve creando una zona montañosa verde en el plano de tierra. Posteriormente se le agregó un plano al cual se le coloco el material del agua.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen16.png)
 
   + A partir de esto, se empezó a decorar con vegetación de assets de árboles y plantas los cuales los importamos a Unity y eliminamos los árboles que no necesitamos, así que nos dimos a la tarea de buscar cada assets que nos gustara, donde concluimos a 3 diferentes. A los cuales se le agrego el shader grass vertex.
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen17.png)
 
   + Y finalmente para utilizar otro de nuestros shaders colocamos plantas con su animación vertex, rocas y animales cuyos utilizan el modelo de luz custom toon-shading. Este shader ya antes definido se utilizó para darle un poco más de vida animal a nuestro escenario.
-![](.png)
-![](.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen18.png)
+![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen19.png)
 
 ## Conclusiones
 
