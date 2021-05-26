@@ -46,40 +46,40 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
   + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen2.png)
 
   + Ahora creamos un subgrafo para nuestro mainLight, donde pondremos nuestra función creada anteriormente y le conectaremos un nodo de posición:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen3.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen3.png)
 
   + Acto seguido creamos otro subgrafo en el cual realizaremos la operación producto punto, para esto es necesario el MainLight que acabamos de hacer y el normal vector, lo saturamos para que nos quede en valores de 0 y 1:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen4.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen4.png)
 
   + Para crear el efecto de falloff haremos un subgrafo donde estará el Lambert, para esto multiplicamos nuestro producto punto con el color de la atenuación de la luz:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen5.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen5.png)
 
   + De igual manera que con el MainLight crearemos un archivo hlsl para el DirectSpecular, este funciona para que se refleje la dirección de la luz dependiendo de la dirección de donde sea observado, para esto utilizaremos el siguiente código:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen6.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen6.png)
 
   + Posteriormente creamos un subgrafo para el DirectSpecular donde le pasaremos sus propiedades correspondientes:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen7.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen7.png)
 
   + Crearemos otro subgrafo para la atenuación de la luz, donde utilizaremos el MainLight y realizaremos sus respectivas operaciones para calcular el color y las sombras:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen8.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen8.png)
   
   + Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen9.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen9.png)
 
   + Lo pasamos a nuestro shader principal conectando el producto punto con la intensidad de la luz, también crearemos una propiedad de tipo Boolean para saber si el efecto será intenso o suavizado.
 
   + Para el reflejo de la luz cartoon, en vez de utilizar una textura creada por nosotros en cualquier editor de imágenes, utilizamos la herramienta voronoi para simular dicho efecto, entonces creamos otro subgrafo llamado Dabs, en donde modificaremos las propiedades del voronoi utilizando el rotate y el tiling and offset. Dando como resultado lo siguiente:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen10.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen10.png)
 
   + Lo pasamos a nuestro shader principal multiplicándolo con el DirectSpecular.
 
   + Crearemos otro subgrafo para el SideLight, el cual es la silueta de luz que se forma en nuestro modelo, dependiendo de la dirección de la luz. Aquí haremos uso nuevamente del MainLight, del Lambert. Substraeremos pocas unidades a nuestro lamber para que el falloff quede en la parte superior y realizaremos un producto punto entre el MainLight y el ViewDirection, para después unir ambos resultados e invertirlo y agregar el filtro deseado utilizando el efecto Fresnel y lo redondeamos utilizando Step. Viéndose así:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen11.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen11.png)
 
   + Para agregarlo al shader principal solo lo tenemos que sumar con el efecto que ya teníamos. Finalmente, nuestro shader se vería de este modo:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen12.png)
-    Agregándolo a un modelo:
-  + ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen13.png)
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen12.png)
+  + Agregándolo a un modelo:
+    ![](https://github.com/Marisela-Delgadillo/ProyectoFinal/blob/main/Assets/Preview/Imagen13.png)
 
 + ***Capítulo 4. Creación del Shader grass vertex***
 
