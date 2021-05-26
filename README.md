@@ -38,40 +38,33 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 + ***Capítulo 2. Creación de Shader para el agua***
 
   + Para realizar el shader del agua. Primero generamos un grafo de universal render pipeline tipo lit shader graph, decidimos usar este ya que nuestro proyecto no requiere que usemos Sprites. Creamos este shader con un tipo de superficie transparente para que se desvanezca en función con profundidad, usamos la profundidad de la cámara para crear un nodo de la cámara, se le resto el valor de la posición del espacio a la profundidad para crear un gradiente en el agua. Para tener más control en los bordes realizamos un vector de fuerza, posteriormente usamos los brillos del degradado para mezclar entre los dos valores diferentes, así que creamos dos valores de color para poder separar el color del agua profunda y la de la superficie, los conectamos a un nodo y usamos el degradado creado como una máscara para el nodo. Para darle un aspecto más realista al agua usamos dos mapas de normales que se mueven en diferentes direcciones los cuales fueron conectados a sus nodos correspondientes y conectados para poder controlar su fuerza, para que el agua fuera reflejante se utilizó un Smoothness. Y por último para darle movimiento al agua utilizamos la posición de nuestro objeto para poder ser conectado a vertex.
-
 ![](.png)
 
 + ***Capítulo 3. Creación del Shader modelo de luz custom*** 
 
   + Este modelo de luz esta basado en Lambert y en el modelo Specular, crearemos un grafo de universal render pipeline tipo lit shader graph. Primero que nada, creamos nuestro albedo, el cual será el color principal, una vez hecho esto creamos un archivo de tipo hlsl para obtener la dirección de la luz por medio del siguiente código.
-
 ![](.png)
 
-Ahora creamos un subgrafo para nuestro mainLight, donde pondremos nuestra función creada anteriormente y le conectaremos un nodo de posición:
-
+  + Ahora creamos un subgrafo para nuestro mainLight, donde pondremos nuestra función creada anteriormente y le conectaremos un nodo de posición:
 ![](.png)
 
-Acto seguido creamos otro subgrafo en el cual realizaremos la operación producto punto, para esto es necesario el MainLight que acabamos de hacer y el normal vector, lo saturamos para que nos quede en valores de 0 y 1:
-
+  + Acto seguido creamos otro subgrafo en el cual realizaremos la operación producto punto, para esto es necesario el MainLight que acabamos de hacer y el normal vector, lo saturamos para que nos quede en valores de 0 y 1:
 ![](.png)
 
-Para crear el efecto de falloff haremos un subgrafo donde estará el Lambert, para esto multiplicamos nuestro producto punto con el color de la atenuación de la luz:
-
+  + Para crear el efecto de falloff haremos un subgrafo donde estará el Lambert, para esto multiplicamos nuestro producto punto con el color de la atenuación de la luz:
 ![](.png)
 
-De igual manera que con el MainLight crearemos un archivo hlsl para el DirectSpecular, este funciona para que se refleje la dirección de la luz dependiendo de la dirección de donde sea observado, para esto utilizaremos el siguiente código:
-
+  + De igual manera que con el MainLight crearemos un archivo hlsl para el DirectSpecular, este funciona para que se refleje la dirección de la luz dependiendo de la dirección de donde sea observado, para esto utilizaremos el siguiente código:
 ![](.png)
 
-Posteriormente creamos un subgrafo para el DirectSpecular donde le pasaremos sus propiedades correspondientes:
+  + Posteriormente creamos un subgrafo para el DirectSpecular donde le pasaremos sus propiedades correspondientes:
+![](.png)
 
-![](RackMultipart20210526-4-1bpns4f_html_a45bf85835eb0b2f.png)Crearemos otro subgrafo para la atenuación de la luz, donde utilizaremos el MainLight y realizaremos sus respectivas operaciones para calcular el color y las sombras:
+  + Crearemos otro subgrafo para la atenuación de la luz, donde utilizaremos el MainLight y realizaremos sus respectivas operaciones para calcular el color y las sombras:
+![](.png)
 
-![](RackMultipart20210526-4-1bpns4f_html_7f8e4432127966b0.png)
-
-Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
-
-![](RackMultipart20210526-4-1bpns4f_html_370346c950f9c37d.png)
+ + Para el efecto de Toon Shading crearemos un subgrafo con el efecto de Ramp Texture, en el cual ocuparemos dos gradientes entre el negro y blanco, uno intenso y el otro con un pequeño suavizado. Quedando de la siguiente manera:
+![](.png)
 
 Lo pasamos a nuestro shader principal conectando el producto punto con la intensidad de la luz, también crearemos una propiedad de tipo Boolean para saber si el efecto será intenso o suavizado.
 
