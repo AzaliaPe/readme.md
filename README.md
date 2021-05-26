@@ -83,25 +83,22 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 
 ***Capítulo 4. Creación del Shader grass vertex***
 
-Para el movimiento de las plantas y las hojas de los árboles, se necesita modificar la velocidad de desplazamiento del vértice. Para ello, se agrega una propiedad de tipo vector2, en la cual se introduce la velocidad con la que se desea que se muevan las plantas y se multiplica por el tiempo. Esto se conecta con un Tiling and Offset junto con la posición. Después, para poder cambiar la variación de la posición del ruido del vértice, agregamos un nodo de Gradient Noise, al cual le conectamos lo que calculamos anteriormente y una propiedad de tipo float con el valor de la densidad del ruido. Todo esto se conecta a un Substract para limpiar el ruido del viento, y después multiplicarlo por la intensidad del viento. Luego, lo aplicamos este ruido al eje de las X y creamos la interpolación lineal en la posición del eje de las Y. Para terminar, sólo hay que convertirlo de posición mundial a objeto relativo y conectarlo al vertex position.
+  + Para el movimiento de las plantas y las hojas de los árboles, se necesita modificar la velocidad de desplazamiento del vértice. Para ello, se agrega una propiedad de tipo vector2, en la cual se introduce la velocidad con la que se desea que se muevan las plantas y se multiplica por el tiempo. Esto se conecta con un Tiling and Offset junto con la posición. Después, para poder cambiar la variación de la posición del ruido del vértice, agregamos un nodo de Gradient Noise, al cual le conectamos lo que calculamos anteriormente y una propiedad de tipo float con el valor de la densidad del ruido. Todo esto se conecta a un Substract para limpiar el ruido del viento, y después multiplicarlo por la intensidad del viento. Luego, lo aplicamos este ruido al eje de las X y creamos la interpolación lineal en la posición del eje de las Y. Para terminar, sólo hay que convertirlo de posición mundial a objeto relativo y conectarlo al vertex position.
 ![](.png)
 
 ***Capítulo 5. Creación de escenario con shaders***
 
-Después haber hecho los shaders, se comenzó a crear el escenario, cambiamos el material de skybox por otro material que descargamos desde assets para el cielo para poder tener un cielo de acuerdo con nuestro proyecto. Luego creamos un objeto 3D tierra y le fuimos dando forma a nuestro terreno con ayuda de las herramientas que este plano nos proporciona.
+  + Después haber hecho los shaders, se comenzó a crear el escenario, cambiamos el material de skybox por otro material que descargamos desde assets para el cielo para poder tener un cielo de acuerdo con nuestro proyecto. Luego creamos un objeto 3D tierra y le fuimos dando forma a nuestro terreno con ayuda de las herramientas que este plano nos proporciona.
 ![](.png)
 
-Después de terminar de crear nuestro plano de terreno, se buscaron assets que contaron con los requisitos necesarios para elaborar nuestro proyecto, por lo cual colocamos un asset de vegetación verde para el relieve creando una zona montañosa verde en el plano de tierra. Posteriormente se le agregó un plano al cual se le coloco el material del agua.
+  + Después de terminar de crear nuestro plano de terreno, se buscaron assets que contaron con los requisitos necesarios para elaborar nuestro proyecto, por lo cual colocamos un asset de vegetación verde para el relieve creando una zona montañosa verde en el plano de tierra. Posteriormente se le agregó un plano al cual se le coloco el material del agua.
 ![](.png)
 
-A partir de esto, se empezó a decorar con vegetación de assets de árboles y plantas los cuales los importamos a Unity y eliminamos los árboles que no necesitamos, así que nos dimos a la tarea de buscar cada assets que nos gustara, donde concluimos a 3 diferentes. A los cuales se le agrego el shader grass vertex.
-
+  + A partir de esto, se empezó a decorar con vegetación de assets de árboles y plantas los cuales los importamos a Unity y eliminamos los árboles que no necesitamos, así que nos dimos a la tarea de buscar cada assets que nos gustara, donde concluimos a 3 diferentes. A los cuales se le agrego el shader grass vertex.
 ![](.png)
 
-Y finalmente para utilizar otro de nuestros shaders colocamos plantas con su animación vertex, rocas y animales cuyos utilizan el modelo de luz custom toon-shading. Este shader ya antes definido se utilizó para darle un poco más de vida animal a nuestro escenario.
-
+  + Y finalmente para utilizar otro de nuestros shaders colocamos plantas con su animación vertex, rocas y animales cuyos utilizan el modelo de luz custom toon-shading. Este shader ya antes definido se utilizó para darle un poco más de vida animal a nuestro escenario.
 ![](.png)
-
 ![](.png)
 
 ## Conclusiones
