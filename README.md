@@ -105,6 +105,10 @@ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. L
 
 Al final obtuvimos un proyecto que nos retó a poner en práctica nuestros conocimientos en base a la materia, se realizó muy buen proyecto, nos gustó la manera en la que se deslindó cada aparte de él y fue muy divertido colaborar y crear algo que realmente nos gustara. Se obtuvo un paisaje digno de cada punto con el que se estableció el proyecto y por eso podemos decir que el terminarlo y concluir con un escenario creado por nosotros fue muy bueno tanto para nosotros como para reforzar nuestros conocimientos. Hubo algunos detalles en cuestión de encontrar algunos modelos o como empezar a crearlo, pero de ahí en fuera todo se hizo en su tiempo y forma.
 
+## Resultado
+
+***Link del video:*** 
+
 ## Referencias
 
 1. Anónimo. (s.f.). Unity SRP Doc. Gradient Noise Node. Recuperado de: [https://bitinn.github.io/ScriptableRenderPipeline/ShaderGraph/Gradient-Noise-Node/](https://bitinn.github.io/ScriptableRenderPipeline/ShaderGraph/Gradient-Noise-Node/)
