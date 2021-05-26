@@ -1,22 +1,17 @@
 **Equipo:**
 + Aguilar Romo Danna Paulina
-+ Amaya Quintero Cesar Heberto
++ Amaya Quintero César Heberto
 + Marisela Delgadillo Bojórquez
 + Padilla Aispuro Idalia Guadalupe
 + Peña Hernández Azalia
 
-**Semestre:** 4°
-**Materia:** Tópicos de física.
-**Instructor:** Jesús Caro
-
-
-# **Proyecto Final&quot
+# *Proyecto Final*
 
 ## Abstract
 
-+ El objetivo de este proyecto fue crear una escena en Unity sobre vegetación con agua utilizando los distintos shaders aprendidos a lo largo del semestre, se pusieron a prueba todos nuestros conocimientos de Shader Graph, utilizando distintos tipos de modelos de luz, combinaciones, vertex shading y al igual se usaron los vértices como animación.
+El objetivo de este proyecto fue crear una escena en Unity sobre vegetación con agua utilizando los distintos shaders aprendidos a lo largo del semestre, se pusieron a prueba todos nuestros conocimientos de Shader Graph, utilizando distintos tipos de modelos de luz, combinaciones, vertex shading y al igual se usaron los vértices como animación.
 
-+ En la siguiente parte de la documentación se presentará la forma en la que se realizó el antes ya mencionado proyecto, se hablará un poco sobre la investigación de distintas fuentes, conceptos y temas en general de distintos modelos de luz para que nos fueran útiles como herramientas para la creación de nuestra escena en Unity.
+En la siguiente parte de la documentación se presentará la forma en la que se realizó el antes ya mencionado proyecto, se hablará un poco sobre la investigación de distintas fuentes, conceptos y temas en general de distintos modelos de luz para que nos fueran útiles como herramientas para la creación de nuestra escena en Unity.
 
 ## Introducción
 
@@ -26,13 +21,13 @@ Nuestra escena es tomada desde cero, junto con sus shaders y modelos. Para todo 
 
 ## Antecedentes
 
-+ Antes de hablar acerca de lo que hoy conocemos como Shader Graphs, primero tenemos que conocer un poco acerca de Unity. Unity es uno de los motores de creación de videojuegos más importantes de la actualidad, que tuvo sus inicios en 2005 hasta la actualidad y más allá. Unity es uno de los grandes responsables de la democratización de la creación de videojuegos, al ofrecer a desarrolladores amateurs una forma sencilla y barata de aprender y desarrollar sus propias ideas, facilitando el proceso de creación y distribución de sus obras, y creando sin querer una nueva forma de crear videojuegos, la del desarrollador-autor.
+Antes de hablar acerca de lo que hoy conocemos como Shader Graphs, primero tenemos que conocer un poco acerca de Unity. Unity es uno de los motores de creación de videojuegos más importantes de la actualidad, que tuvo sus inicios en 2005 hasta la actualidad y más allá. Unity es uno de los grandes responsables de la democratización de la creación de videojuegos, al ofrecer a desarrolladores amateurs una forma sencilla y barata de aprender y desarrollar sus propias ideas, facilitando el proceso de creación y distribución de sus obras, y creando sin querer una nueva forma de crear videojuegos, la del desarrollador-autor.
 
-+ El éxito de Unity se debe a su enfoque en cubrir las necesidades de los desarrolladores independientes, los cuales normalmente no pueden permitirse crear su propio motor de juegos, ni pagar el acceso a las herramientas necesarias. La compañía busca &quot;democratizar&quot; el desarrollo de videojuegos y hacer que el desarrollo de contenido interactivo 2D y 3D sea lo más accesible a tantas personas en todo el mundo como sea posible.
+El éxito de Unity se debe a su enfoque en cubrir las necesidades de los desarrolladores independientes, los cuales normalmente no pueden permitirse crear su propio motor de juegos, ni pagar el acceso a las herramientas necesarias. La compañía busca &quot;democratizar&quot; el desarrollo de videojuegos y hacer que el desarrollo de contenido interactivo 2D y 3D sea lo más accesible a tantas personas en todo el mundo como sea posible.
 
-+ Anteriormente, no existían maneras de realizar lo que hoy conocemos como “shaders” si no era programando, así que las personas que podían realizar “shaders” son los que contaban con cierto conocimiento de programación y lo llevaban a cabo en Unity. A lo que nos referimos hoy en día como Shader Graph es lo que nos deja empezar a crear a las personas, que no estamos tan familiarizadas en el tema de la programación, básicamente se podría decir que es más didáctica y practica a comparación de la programación. Y es por lo que nos permite crear shaders muy fácilmente. Anteriormente los shaders eran un conjunto de instrucciones que eran ejecutadas todas al mismo tiempo por cada píxel de la pantalla, donde le daba el significado el código que escribías y que tenía que comportarse de manera diferente dependiendo de su posición en la pantalla. Ahora con Shader Graph solo tienes que conectar los nodos en una red de gráficos y puedes ver los gráficos y cambios que estas creando al instante.
+Anteriormente, no existían maneras de realizar lo que hoy conocemos como “shaders” si no era programando, así que las personas que podían realizar “shaders” son los que contaban con cierto conocimiento de programación y lo llevaban a cabo en Unity. A lo que nos referimos hoy en día como Shader Graph es lo que nos deja empezar a crear a las personas, que no estamos tan familiarizadas en el tema de la programación, básicamente se podría decir que es más didáctica y practica a comparación de la programación. Y es por lo que nos permite crear shaders muy fácilmente. Anteriormente los shaders eran un conjunto de instrucciones que eran ejecutadas todas al mismo tiempo por cada píxel de la pantalla, donde le daba el significado el código que escribías y que tenía que comportarse de manera diferente dependiendo de su posición en la pantalla. Ahora con Shader Graph solo tienes que conectar los nodos en una red de gráficos y puedes ver los gráficos y cambios que estas creando al instante.
 
-+ Unity creo Shader Graph para trabajar con el canal de renderizado codificable. Los nodos maestros que funcionan con el canal de renderizado universal y el canal de renderizado de alta definición (HDRP) están incluidos en la versión básica. También logro que se pudiera extender para trabajar con cualquier canal de renderizado personalizado. (1)
+Unity creo Shader Graph para trabajar con el canal de renderizado codificable. Los nodos maestros que funcionan con el canal de renderizado universal y el canal de renderizado de alta definición (HDRP) están incluidos en la versión básica. También logro que se pudiera extender para trabajar con cualquier canal de renderizado personalizado. (1)
 
 ## Desarrollo
 
